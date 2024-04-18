@@ -1,0 +1,38 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.logo{
+    width: 55px;
+}
+
+.menuBtn{
+    background-color: inherit;
+    border: none;
+}
+
+.navButtonsList{
+    width: 60%;
+    display: inline-flex;
+    position: fixed;
+    bottom: 40px;
+    left: 20%;
+    justify-content: center;
+    align-items: center;
+
+    list-style: none;
+    background-color: var(--accentColor);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 200px;
+
+    gap: 20px;
+
+    li{
+        padding: 5px;
+        border-radius: 10px;
+    }
+}
+  

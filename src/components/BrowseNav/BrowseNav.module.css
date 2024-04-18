@@ -1,0 +1,22 @@
+.navBtnList{
+    display: flex;
+    background-color: rgb(244, 244, 244);
+    border-radius: 100px;
+    justify-content: space-around;
+    gap: 10px;
+    padding: 5px;
+
+}
+
+.navBtn{
+    background-color: white;
+    width: 50%;
+    border-radius: 100px;
+    padding: 10px 20px;
+}
+
+
+.active{
+    background-color: var(--accentColor);
+    color: white;
+}
