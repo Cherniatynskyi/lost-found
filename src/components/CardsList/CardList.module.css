@@ -1,0 +1,23 @@
+.browsePage{
+    padding-bottom: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardsList{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.paginateButton{
+    color: white;
+    background-color: var(--accentColor);
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+}

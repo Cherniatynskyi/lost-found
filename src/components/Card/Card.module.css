@@ -1,0 +1,52 @@
+.cardWrap{
+    display: flex;
+    position: relative;
+    border-radius: 20px;
+
+    gap: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.defaultImg{
+    width: 50%;
+    border-radius: 20px;
+}
+
+.priceTag{
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    background-color: var(--accentColor);
+    border-radius: 10px;
+    padding: 5px;
+    color: white;
+}
+
+.infoWrap{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title{
+    font-size: 20px;
+    color: var(--accentColor);
+}
+
+.desc{
+    font-size: 12px;
+    color: rgb(111, 111, 111);
+    margin-top: 5px;
+}
+
+
+.date{
+    font-size: 12px;
+}
+
+.location{
+    font-size: 12px;
+    margin-top: 5px;
+    color: var(--accentColor);
+}

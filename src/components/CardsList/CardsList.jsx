@@ -1,6 +1,8 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getLostThunk, getFoundThunk } from "../../redux/operations"
+import { Card } from "components/Card/Card"
+import css from './CardList.module.css'
 
 export const CardsList = () => {
     const dispatch = useDispatch()
@@ -17,15 +19,15 @@ export const CardsList = () => {
     }, [dispatch, type])
     
   return (
-    <div>
+    <div className={css.browsePage}>
+      <ul className={css.cardsList}>
         {cards.map(card =>{
             return (
-                <div key={card._id}>
-                    <div>{card.title}</div>
-                    <div>{card.description}</div>
-                </div>
+                <li key={card._id}><Card card={card}/></li>
             )
         })}
+      </ul>
+      <button className={css.paginateButton}>Далі</button>
     </div>
   )
 }
