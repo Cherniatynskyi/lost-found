@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getLostThunk, getFoundThunk } from "../../redux/operations"
+import { getLostThunk, getFoundThunk } from "../../redux/Cards/operations"
 import { Card } from "components/Card/Card"
 import css from './CardList.module.css'
 

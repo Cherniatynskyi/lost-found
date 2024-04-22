@@ -1,6 +1,6 @@
 import css from './BrowseNav.module.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { setType } from '../../redux/cardsSlice'
+import { setType } from '../../redux/Cards/cardsSlice'
 
 export const BrowseNav = () => {
   const type = useSelector(state => state.cards.type)
