@@ -5,6 +5,8 @@ import { Form, Field, ErrorMessage } from 'formik';
 import css from './Auth.module.css';
 import { useDispatch } from 'react-redux';
 import { loginThunk } from '../../redux/Auth/operations';
+import { IoEye } from "react-icons/io5";
+import { IoMdEyeOff } from "react-icons/io";
 
 
 const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -81,7 +83,7 @@ export const Login = () => {
                   type="button"
                   onClick={handleClickPasswordVisibility}
                 >
-                  ICON
+                  <IoMdEyeOff />
                 </button>
               ) : (
                 <button
@@ -89,7 +91,7 @@ export const Login = () => {
                   type="button"
                   onClick={handleClickPasswordVisibility}
                 >
-                  ICON
+                  <IoEye />
                 </button>
               )}
               {errors.password && touched.password && (
@@ -103,7 +105,7 @@ export const Login = () => {
             <div className={css.notError}></div>
 
             <button className={css.button} type="submit">
-              Log In Now
+              Log In
             </button>
           </Form>
         )}

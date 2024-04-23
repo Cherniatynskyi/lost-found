@@ -5,6 +5,7 @@ export const MenuSlice = createSlice({
     initialState: {
         isOpen: false,
         burgerIsOpen: false,
+        profileIsOpen: false
     },
     reducers:{
         openModal: (state, {payload}) =>{
@@ -24,10 +25,18 @@ export const MenuSlice = createSlice({
         closeBurger: (state, action) =>{
             state.burgerIsOpen = false
             
+        },
+        openProfile: (state, {payload}) =>{
+            state.profileIsOpen = true
+            
+        },
+        closeProfile: (state, action) =>{
+            state.profileIsOpen = false
+            
         }
     }
 })
 
 
 
-export const {openModal, closeModal, openBurger, closeBurger} = MenuSlice.actions
+export const {openModal, closeModal, openBurger, closeBurger, openProfile, closeProfile} = MenuSlice.actions

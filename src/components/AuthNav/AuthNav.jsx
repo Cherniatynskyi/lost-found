@@ -10,21 +10,22 @@ export const AuthNav = () => {
         <div className={css.authForm}>
           <div className={css.authNav}>
             <NavLink
-              className={`${css.authLink1} ${
+              className={`${css.authLink} ${
                 id === 'register' ? css.linkActive : ''
               }`}
               to="/auth/register"
             >
-              Registration
+              Sign up
             </NavLink>
             <NavLink
-              className={`${css.authLink2} ${id === 'login' ? css.linkActive : ''}`}
+              className={`${css.authLink} ${id === 'login' ? css.linkActive : ''}`}
               to="/auth/login"
             >
               Log In
             </NavLink>
-            {id === 'register' ? <Register /> : <Login />}
+            
           </div>
+          {id === 'register' ? <Register /> : <Login />}
         </div>
       );
 }

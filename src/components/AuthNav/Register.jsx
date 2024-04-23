@@ -5,6 +5,9 @@ import * as Yup from 'yup';
 import css from './Auth.module.css';
 import { useDispatch } from 'react-redux';
 import { registerThunk } from '../../redux/Auth/operations';
+import { IoEye } from "react-icons/io5";
+import { IoMdEyeOff } from "react-icons/io";
+
 
 const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -104,7 +107,7 @@ export const Register = () => {
                     type="button"
                     onClick={handleClickPasswordVisibility}
                   >
-                    icon
+                    <IoMdEyeOff />
                   </button>
                 ) : (
                   <button
@@ -112,7 +115,7 @@ export const Register = () => {
                     type="button"
                     onClick={handleClickPasswordVisibility}
                   >
-                    icon
+                    <IoEye />
                   </button>
                 )}
                 {errors.password && touched.password && (
