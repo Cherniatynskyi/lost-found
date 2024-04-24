@@ -34,7 +34,7 @@ export const Layout = () => {
             </li>
             <li><GoPlusCircle size="40px"/></li>
             <li style={location.pathname !== "/" ? {backgroundColor: "white"} :{}}>
-                <NavLink to="/lost"><IoMdListBox size="30px" style={location.pathname !== '/' ? {fill: "#1a71fe"} : {}}/></NavLink>
+                <NavLink to="/browse"><IoMdListBox size="30px" style={location.pathname !== '/' ? {fill: "#1a71fe"} : {}}/></NavLink>
             </li>   
         </ul>
 

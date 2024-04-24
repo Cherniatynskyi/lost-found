@@ -1,17 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { signUp, logIn, logOut, getProfile, setToken, updateUser } from 'services/authService';
 
 export const loginThunk = createAsyncThunk(
   'auth/login',
   async (body, { rejectWithValue }) => {
     try {
-      return await logIn(body);
+      const res =  await logIn(body);
+      toast.success('Ви успішно залогінились');
+      return res
     } catch (error) {
-      toast.error(
-        'Oops! Something went wrong! Please try reloading this page!'
-      );
+      toast.error("Невірний логін чи пароль");
       return rejectWithValue(error.message);
     }
   }
@@ -21,10 +21,12 @@ export const registerThunk = createAsyncThunk(
   'auth/register',
   async (body, { rejectWithValue }) => {
     try {
-      return await signUp(body);
+      const res = await signUp(body);
+      toast.success('Реєстрація пройшла успішно');
+      return res
     } catch (error) {
       toast.error(
-        'Oops! Something went wrong! Please try reloading this page!'
+        'Виникла помилка!'
       );
       return rejectWithValue(error.message);
     }
@@ -85,7 +87,7 @@ export const updaterUserData = createAsyncThunk(
   async (body, { rejectWithValue }) => {
     try {
       const data = await updateUser(body);
-      toast.success('Your information successfully updated');
+      toast.success('Ваші данні оновлено ');
       return data;
     } catch (error) {
       toast.error(

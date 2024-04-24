@@ -10,6 +10,8 @@ import { updaterUserData } from '../../redux/Auth/operations';
 import ImageInput from './ImgInput';
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
+import { FaUser } from "react-icons/fa";
+import { FaSquarePlus } from "react-icons/fa6";
 
 const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -28,7 +30,6 @@ const schema = Yup.object().shape({
     .email('Enter a valid Email*')
     .required('Email is required*'),
   password: Yup.string()
-    .matches(/^(?=.*[a-z])/, 'Password must meet the requirements*')
     .min(8, 'Password must be at least 6 characters')
     .max(64, 'Password must be no more than 16 characters'),
 });
@@ -45,7 +46,6 @@ export const ProfileModal = ({onClose}) => {
     
     const createUserDataFormData = infoUser => {
         const formData = new FormData();
-        console.log(infoUser);
         if (infoUser.password) {
           formData.append('password', infoUser.password);
         }
@@ -83,8 +83,8 @@ export const ProfileModal = ({onClose}) => {
     <div className={css.profileModal}>
         <button onClick={()=>dispatch(closeProfile())} className={css.menuCloseBtn}><IoMdClose /></button>
         <>
-      <h2 className={css.formTitle}>Edit</h2>
         <Formik
+          className={css.form}
           initialValues={{
             avatar: '',
             avatarURL: user.avatarURL,
@@ -107,18 +107,19 @@ export const ProfileModal = ({onClose}) => {
                   />
                 ) : (
                   <div className={css.userIconBtn}>
-                    Icon user
+                    <FaUser />
                   </div>
                 )}
 
                 <label htmlFor="avatar" className={css.iconBtnPlus}>
                   <ImageInput handleChange={handleImageChange} />
 
-                  icon plus
+                  <FaSquarePlus className={css.addIcon}/>
                 </label>
               </label>
             </div>
-            <div className={css.fieldWrapper}>
+              <div className={css.fieldsList}>
+                  <div className={css.fieldWrapper}>
               <Field
                 className={css.field}
                 type="text"
@@ -169,9 +170,11 @@ export const ProfileModal = ({onClose}) => {
                 {errorMsg => <div className={css.errorMessage}>{errorMsg}</div>}
               </ErrorMessage>
             </div>
+                  </div>
             <button className={css.btnSend} type="submit">
-                submit
+                Зберегти
             </button>
+            
           </Form>
         </Formik>
     </>

@@ -8,11 +8,12 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser } from '../redux/Auth/operations';
 import { Restricted } from '../Routes/Restricted';
-// import { Private } from '../Routes/Private';
+import { Private } from '../Routes/Private';
 
 function App() {
 
   const AuthPage = lazy(() => import('../pages/AuthPage/AuthPage'));
+  const MyPostsPage = lazy(() => import('../pages/MyPostsPage/MyPostsPage'));
 
   const dispatch = useDispatch();
 
@@ -23,8 +24,9 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout/>}>
         <Route index element={<HomePage/>}/>
-        <Route path='/:type' element={<BrowsePage/>}/>
+        <Route path='/browse' element={<BrowsePage/>}/>
         <Route path='/auth/:id' element={<Restricted element={AuthPage}/>}/>
+        <Route path='/myposts' element={<Private element={MyPostsPage}/>}/>
       </Route>
     </Routes>
   );

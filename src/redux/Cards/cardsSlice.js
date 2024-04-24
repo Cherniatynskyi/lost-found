@@ -19,7 +19,7 @@ const handleFulfilledGetFound = (state,{payload}) => {
 
 const handleFulfilledGetByOwner = (state,{payload}) => {
     state.isLoading = false
-    state.cards = payload
+    state.ownerCards = payload
     state.error = ''
 }
 
@@ -53,6 +53,7 @@ export const CardsSlice = createSlice({
     name: 'cards',
     initialState: {
         cards:[],
+        ownerCards: [],
         type: 'lost',
         isLoading: false,
         error: '',

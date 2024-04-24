@@ -1,9 +1,13 @@
 import { AuthNav } from "components/AuthNav/AuthNav"
+import { ToastContainer } from 'react-toastify';
 
 
 const AuthPage = () => {
   return (
-    <div><AuthNav/></div>
+    <div>
+      <AuthNav/>
+      <ToastContainer/>
+    </div>
   )
 }
 

@@ -11,7 +11,7 @@ export const Hero = () =>{
         <h1 className={css.heroTitle}><span>Загубив та Знайшов.</span> <br></br> Найкраще бюро знахідок України 🇺🇦</h1>
         <p className={css.subTitle}>Зручний додаток для справжніх філантропів</p>
         <div className={css.heroBtnContainer}>
-            <NavLink to='/lost' className={css.heroBtn}><FaSearch /> Дивитися</NavLink>
+            <NavLink to='/browse' className={css.heroBtn}><FaSearch /> Дивитися</NavLink>
             <button className={css.heroBtn}><FaPlus /> Створити</button>
         </div>
     </div>

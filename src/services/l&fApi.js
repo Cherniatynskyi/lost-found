@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { setToken } from './authService'
+import { instance } from './authService'
 
 export const getLost = async () => {
     const response = await axios({ url: `http://localhost:3003/api/cards/lost`, method: "GET" })
@@ -11,8 +13,9 @@ export const getFound = async () => {
 }
 
 export const getByOwner = async (ownerId) => {
-    const response = await axios({ url: `http://localhost:3003/api/cards/${ownerId}`, method: "GET" })
-    return response.data
+    const {data} = await instance.get(`cards/${ownerId}`)
+    setToken(`Bearer ${data.token}`)
+    return data
 }
 
 export const addCard = async (data) => {

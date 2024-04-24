@@ -6,8 +6,8 @@ export const Card = ({card}) => {
   return (
     <div className={css.cardWrap}>
         {card.photo ?
-         <img className={css.cardImg} src={card.photo} alt="item" />
-          :  <img className={css.defaultImg} src="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg" alt="default"></img>}
+         <img className={css.cardImg} src={card.photo} width="50%" alt="item" />
+          :  <img className={css.defaultImg} width="200" height="130" src="https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg" alt="default"></img>}
         <div className={css.priceTag}>{card.price} $</div>
         <div className={css.infoWrap}>
             <div>

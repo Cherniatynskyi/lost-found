@@ -9,33 +9,36 @@
     transition: 200ms linear;
     padding: 20px;
     padding-top: 30px;
+
 }
 
-.authForm{
-    padding: 30px;
+.menuCloseBtn{
+    position: absolute;
+    background-color: inherit;
+    font-size: 40px;
+    right: 10px;
+    top: 15px;
 }
-.authNav{
+
+.avatar{
     display: flex;
-    gap: 30px;
-}
+    justify-content: center;
 
-.authLink{
-    font-size: 30px;
-    font-weight: 400;
-    color: grey;
-    cursor: pointer;
-}
-
-.linkActive {
-    color: var(--accentColor);
-    font-weight: 600;
-}
-
-.Form{
     margin-top: 30px;
+}
+
+.userImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.fieldsList{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
+
+    margin-top: 30px;
 }
 
 .fieldWrapper{
@@ -51,7 +54,7 @@
     font-size: 18px;
     background-color: rgb(228, 228, 228);
 
-    color: black
+    color: black;
 }
 
 .errorMessage{
@@ -68,10 +71,47 @@
     font-size: 20px;
 }
 
-.button{
+
+
+/*  */
+
+
+.userAvaWrapper{
+    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.userIconBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--accentColor);
+
+    font-size: 40px;
+    color: white;
+
+}
+
+.addIcon{
+    font-size: 30px;
+    margin-top: -9px;
+    fill: rgb(196, 196, 196);
+}
+
+.btnSend{
     background-color: var(--accentColor);
     color: white;
+    padding: 10px 20px;
+    border-radius: 200px;
+
     font-size: 20px;
-    padding: 15px;
-    border-radius: 14px;
+    display: block;
+    margin: auto;
+    margin-top: 30px;
 }
