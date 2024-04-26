@@ -3,20 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 export const MenuSlice = createSlice({
     name: 'menu',
     initialState: {
-        isOpen: false,
+        createModalIsOpen: false,
         burgerIsOpen: false,
         profileIsOpen: false
     },
     reducers:{
-        openModal: (state, {payload}) =>{
-            state.isOpen = true
-            state.modalContent = payload.content
-            state.selectedElId = payload.id
+        openCreateModal: (state, {payload}) =>{
+            state.createModalIsOpen = true
         },
-        closeModal: (state, action) =>{
-            state.isOpen = false
-            state.modalContent = null
-            state.selectedElId = null
+        closeCreateModal: (state, action) =>{
+            state.createModalIsOpen = false
+
         },
         openBurger: (state, {payload}) =>{
             state.burgerIsOpen = true
@@ -39,4 +36,4 @@ export const MenuSlice = createSlice({
 
 
 
-export const {openModal, closeModal, openBurger, closeBurger, openProfile, closeProfile} = MenuSlice.actions
+export const {openCreateModal, closeCreateModal, openBurger, closeBurger, openProfile, closeProfile} = MenuSlice.actions

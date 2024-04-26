@@ -41,5 +41,6 @@ export const getProfile = async () => {
 
 export const updateUser = async body => {
   const { data } = await instance.put('/users/update', body);
+  setToken(`Bearer ${data.token}`);
   return data.updatedUser;
 };

@@ -67,7 +67,6 @@ export const ProfileModal = ({onClose}) => {
         const userData = createUserDataFormData(newUserData);
     
         dispatch(updaterUserData(userData));
-    
         resetForm();
     
         setFieldValue('name', values.name);

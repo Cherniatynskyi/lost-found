@@ -10,15 +10,18 @@ import { GoPlusCircle } from "react-icons/go";
 import { IoMdListBox } from "react-icons/io";
 import { BurgerMenu } from "./BurgerMenu/BurgerMenu";
 import { useSelector, useDispatch } from "react-redux";
-import { openBurger } from "../redux/menuSlice";
+import { openBurger, openCreateModal } from "../redux/menuSlice";
+import { CreateModal } from "./ProfileModal/CreateModal";
 
 export const Layout = () => {
     const location = useLocation()
     const dispatch = useDispatch()
     const isMenuOpen = useSelector(state => state.menu.burgerIsOpen)
+    const isCreateModalOpen = useSelector(state => state.menu.createModalIsOpen)
     return (
       <div className={css.main}>
         {isMenuOpen && <BurgerMenu/>}
+        {isCreateModalOpen && <CreateModal/>}
         <div className={css.nav}>
             <img className={css.logo} src={logo} alt="" />
             <button onClick={()=>dispatch(openBurger())} className={css.menuBtn}><TbMenuDeep size='35px'/></button>
@@ -29,11 +32,11 @@ export const Layout = () => {
         </Suspense>
 
         <ul className={css.navButtonsList}>
-            <li style={location.pathname === "/" ? {backgroundColor: "white"} :{}}>
+            <li className={css.BtnItem} style={location.pathname === "/" ? {backgroundColor: "white"} :{}}>
                 <NavLink to="/"><GrHomeRounded size="30px" style={location.pathname === '/' ? {fill: "#1a71fe"} : {}}/></NavLink>
             </li>
-            <li><GoPlusCircle size="40px"/></li>
-            <li style={location.pathname !== "/" ? {backgroundColor: "white"} :{}}>
+            <li><button onClick={()=>dispatch(openCreateModal())} className={css.BtnItem} ><GoPlusCircle fill="white" size="40px"/></button></li>
+            <li className={css.BtnItem}  style={location.pathname !== "/" ? {backgroundColor: "white"} :{}}>
                 <NavLink to="/browse"><IoMdListBox size="30px" style={location.pathname !== '/' ? {fill: "#1a71fe"} : {}}/></NavLink>
             </li>   
         </ul>

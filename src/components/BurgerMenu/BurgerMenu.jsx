@@ -11,7 +11,7 @@ import { IoAddCircleSharp } from "react-icons/io5";
 import { BiSolidDoorOpen } from "react-icons/bi";
 import { MdLogin } from "react-icons/md";
 import { ProfileModal } from 'components/ProfileModal/ProfileModal';
-import { openProfile } from '../../redux/menuSlice';
+import { openProfile, openCreateModal } from '../../redux/menuSlice';
 
 
 export const BurgerMenu = () => {
@@ -19,6 +19,11 @@ export const BurgerMenu = () => {
     useLockBodyScroll()
     const user = useSelector(state => state.auth.user)
     const profileIsOpen = useSelector(state => state.menu.profileIsOpen)
+
+    const onCreateClick = () =>{
+      dispatch(closeBurger())
+      dispatch(openCreateModal())
+    }
 
 
   return (
@@ -34,8 +39,7 @@ export const BurgerMenu = () => {
         <div className={css.navWrap}>
           <ul className={css.burgerNav}>
               {user && <Link className={css.burgerBtn} onClick={()=>dispatch(closeBurger())} to={user ? '/myposts' : 'auth/login'}>Мої оголошення <FaListUl /></Link>}
-              <Link className={css.burgerBtn} onClick={()=>dispatch(closeBurger())} to={user ? '/create' : 'auth/login'}>Опублікувати знахідку <IoAddCircleSharp /></Link>
-              <Link className={css.burgerBtn} onClick={()=>dispatch(closeBurger())} to={user ? '/create' : 'auth/login'}>Опублікувати втрату <IoAddCircleSharp /></Link> 
+              <Link className={css.burgerBtn} onClick={onCreateClick} to={user ? '/' : 'auth/login'}>Створити публікацію<IoAddCircleSharp /></Link>
           </ul>
           {user && <button onClick={()=>dispatch(logoutThunk())} className={`${css.burgerBtn} ${css.logout}`}>Вийти <BiSolidDoorOpen /></button> }
         </div>

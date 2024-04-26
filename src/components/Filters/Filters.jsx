@@ -19,11 +19,11 @@ export const Filters = ()=> {
                 placeholder="Місто"
             />
             <Select
-                    defaultValue={selectedCategory}
-                    onChange={setSelectedCategory}
-                    options={categoryOptions}
-                    className={css.citySelect}
-                    placeholder="Категорія"
+                defaultValue={selectedCategory}
+                onChange={setSelectedCategory}
+                options={categoryOptions}
+                className={css.citySelect}
+                placeholder="Категорія"
             />
         </div>
         <div>

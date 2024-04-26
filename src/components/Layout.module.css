@@ -34,9 +34,11 @@
 
     gap: 20px;
 
-    li{
-        padding: 5px;
-        border-radius: 10px;
-    }
+}
+
+.BtnItem{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: inherit;
 }
   

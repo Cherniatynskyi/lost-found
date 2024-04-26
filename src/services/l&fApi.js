@@ -18,8 +18,10 @@ export const getByOwner = async (ownerId) => {
     return data
 }
 
-export const addCard = async (data) => {
-    return await axios.post('http://localhost:3003/api/cards/', data) 
+export const addCard = async (body) => {
+    const data =  await instance.post('cards/', body)
+    setToken(`Bearer ${data.token}`) 
+    return data
 }
 
 export const deleteCard = async (id) => {
