@@ -17,6 +17,7 @@ import { openProfile, openCreateModal } from '../../redux/menuSlice';
 export const BurgerMenu = () => {
     const dispatch = useDispatch()
     useLockBodyScroll()
+    window.scrollTo(0, 0)
     const user = useSelector(state => state.auth.user)
     const profileIsOpen = useSelector(state => state.menu.profileIsOpen)
 

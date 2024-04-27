@@ -39,6 +39,7 @@ export const ProfileModal = ({onClose}) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [image, setPreviewImage] = useState(null);
     const dispatch = useDispatch();
+    window.scrollTo(0, 0)
 
     const handleImageChange = imageUrl => {
         setPreviewImage(imageUrl);

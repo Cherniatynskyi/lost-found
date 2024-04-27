@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getByOwnerThunk } from "../../redux/Cards/operations"
 import { Card } from "components/Card/Card"
+
 import css from './CardList.module.css'
 
 export const  MyPostsList = () => {
@@ -13,7 +14,9 @@ export const  MyPostsList = () => {
       if(user){
         dispatch(getByOwnerThunk(user._id))
       }
-    }, [dispatch, user ])
+    }, [dispatch, user, ownerCards ])
+
+    
 
   return (
     <>
@@ -21,7 +24,9 @@ export const  MyPostsList = () => {
       <ul className={css.cardsList}>
         {ownerCards.map(card =>{
             return (
-                <li key={card._id}><Card card={card}/></li>
+                <li className={css.myPostsItem} key={card._id}>
+                  <Card card={card}/>
+                </li>
             )
         })}
       </ul>

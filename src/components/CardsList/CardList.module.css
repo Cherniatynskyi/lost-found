@@ -14,10 +14,33 @@
     margin-top: 20px;
 }
 
+.pagginationWrap{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
 .paginateButton{
     color: white;
     background-color: var(--accentColor);
     padding: 10px 20px;
     border-radius: 20px;
+
+    display: flex;
+    align-items: center;
+}
+
+.pagginationCounter{
+    font-size: 20px;
+}
+
+.btnDisabled{
+    background-color: grey;
+    cursor: not-allowed;
+    color: rgb(177, 177, 177);
+}
+
+.defaultTxt{
     margin-top: 20px;
 }

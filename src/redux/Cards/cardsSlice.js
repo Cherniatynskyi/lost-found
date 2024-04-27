@@ -57,17 +57,28 @@ export const CardsSlice = createSlice({
         type: 'lost',
         isLoading: false,
         error: '',
-        filters: {}
+        filters: {
+            location: 'all',
+            category: 'all'
+        },
+        page: 1
     },
     reducers:{
         setFilter: (state, {payload})=>{
-            state.filters = payload
+            state.filters[payload.filter] = payload.value
         },
         setType: (state, {payload})=>{
             state.type = payload
+            state.page = 1
+        },
+        incPage: (state, {payload})=>{
+            state.page = state.page + 1
+        },
+        decPage: (state, {payload})=>{
+            state.page = state.page - 1
         }
     },
-    extraReducers:(builder)=>{
+    extraReducers: (builder)=>{
         builder
         .addCase(getLostThunk.fulfilled, handleFulfilledGetLost)
         .addCase(getFoundThunk.fulfilled, handleFulfilledGetFound)
@@ -80,4 +91,4 @@ export const CardsSlice = createSlice({
     }
 })
 
-export const {setFilter, setType} = CardsSlice.actions
+export const {setFilter, setType, incPage, decPage} = CardsSlice.actions

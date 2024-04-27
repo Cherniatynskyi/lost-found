@@ -1,20 +1,25 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { getLost, getFound, getByOwner, addCard, deleteCard, updateCard } from "services/l&fApi";
 
-export const getLostThunk = createAsyncThunk('cards/getLost', async()=>{
-    return await getLost()
+export const getLostThunk = createAsyncThunk('cards/getLost', async({page, location, category})=>{
+    return await getLost(page, location, category)
 })
 
-export const getFoundThunk = createAsyncThunk('cards/getFound', async()=>{
-    return await getFound()
+export const getFoundThunk = createAsyncThunk('cards/getFound', async({page, location, category})=>{
+    return await getFound(page, location, category)
 })
 
-export const getByOwnerThunk = createAsyncThunk('cards/getByOwner', async(ownerId)=>{
-    return await getByOwner(ownerId)
+export const getByOwnerThunk = createAsyncThunk('cards/getByOwner', async(ownerId, thunkAPI)=>{
+    const state = thunkAPI.getState();
+    const persostedToken = state.auth.token;
+    return await getByOwner(ownerId, persostedToken)
 })
 
 export const addCardThunk = createAsyncThunk('cards/addCard', async(data)=>{
     const cards = await addCard(data);
+    toast.success('Публікація створенна');
     return cards.data
 })
 

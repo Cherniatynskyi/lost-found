@@ -6,14 +6,21 @@ import { useState } from 'react';
 import Select from 'react-select';
 import { categoryOptions, cityOptions } from 'utils/categories';
 import { addCardThunk } from '../../redux/Cards/operations';
+import { MdAddPhotoAlternate } from "react-icons/md";
+import { HiPhoto } from "react-icons/hi2";
+import { useLockBodyScroll } from '@uidotdev/usehooks';
+import { useNavigate } from 'react-router-dom';
 
 export const CreateModal = () => {
+    window.scrollTo(0, 0)
+    const navigate = useNavigate()
 
     const [location, setLocation] = useState('')
     const [category, setCategoty] = useState('')
     const [photo, setPhoto] = useState('')
     
 
+    useLockBodyScroll()
     const [data, setData] = useState({
         type: "lost",
         title: "",
@@ -34,6 +41,7 @@ export const CreateModal = () => {
         formData.append('price', data.price);
         formData.append('location', data.location);
         formData.append('category', data.category);
+        formData.append('contact', data.category);
     
         return formData;
       };
@@ -42,6 +50,8 @@ export const CreateModal = () => {
         e.preventDefault();
         const newData = createUserDataFormData(data)
         dispatch(addCardThunk(newData))
+        dispatch(closeCreateModal())
+        navigate('/myposts')
     }
 
     const handleChangeData = (e) =>{
@@ -57,17 +67,23 @@ export const CreateModal = () => {
     return (
         <div className={css.profileModal}>
             <button onClick={()=>dispatch(closeCreateModal())} className={css.menuCloseBtn}><IoMdClose /></button>
-            <form onSubmit={handleSubmit}>
-                <fieldset>
-                    <legend>Тип публікації</legend>
-                    <label>
-                        <input className={css.formInput} onChange={e => handleChangeData(e)} type="radio" name="type" value="lost" required defaultChecked/>
+            <form className={css.form} onSubmit={handleSubmit}>
+                <h2>Створити публікацію</h2>
+                <fieldset className={css.typeWrap}>
+                    <label className={css.container}>
+                        <input  className={css.formInput} onChange={e => handleChangeData(e)} type="radio" name="type" value="lost" required defaultChecked/>
+                        <span
+                            className={`${css.checkmark}`}
+                        >Загубив</span>
                     </label>
-                    <label>
+                    <label className={css.container}>
                         <input className={css.formInput} onChange={e => handleChangeData(e)} type="radio" name="type" value="found" required/>
+                        <span
+                            className={`${css.checkmark}`}
+                        >Знайшов</span>
                     </label>
                 </fieldset>
-                <div>
+                <div className={css.selectsContainer}>
                     <Select
                         defaultValue={data.location}
                         onChange={setLocation}
@@ -83,61 +99,65 @@ export const CreateModal = () => {
                         placeholder="Категорія"
                     />
                 </div>
-                <input
-                    className={css.formInputTitle}
-                    type="text"
-                    name="title"
-                    placeholder="Заголовок"
-                    onChange={e => handleChangeData(e)}
-                    required
-                />
-                <p className={css.errMsg} name="title" />
-                <label>
-                    <textarea
-                        className={css.formInput}
-                        rows={4}
-                        name="description"
-                        placeholder='Опис'
+                <div className={css.inputsWrap}>
+                    <input
+                        className={css.field}
+                        type="text"
+                        name="title"
+                        placeholder="Заголовок"
                         onChange={e => handleChangeData(e)}
                         required
                     />
-                    <p className={css.errMsg} name="text" />
+                    <p className={css.errMsg} name="title" />
+                    <label>
+                        <textarea
+                            className={css.fieldDesc}
+                            rows={4}
+                            name="description"
+                            placeholder='Опис'
+                            onChange={e => handleChangeData(e)}
+                            required
+                        />
+                        <p className={css.errMsg} name="text" />
+                    </label>
+                    <label>
+                        <input
+                            className={css.field}
+                            type="date"
+                            name="date"
+                            placeholder="дата"
+                            onChange={e => handleChangeData(e)}
+                            required
+                        />
+                        <p className={css.errMsg} name="text" />
+                    </label>
+                    <label>
+                        <input
+                            className={css.field}
+                            type="text"
+                            name="price"
+                            placeholder="Винагорода"
+                            onChange={e => handleChangeData(e)}
+                        />
+                        <p className={css.errMsg} name="text" />
+                    </label>
+                    <label>
+                        <input
+                            className={css.field}
+                            type="text"
+                            name="contact"
+                            placeholder="Контактні дані"
+                            onChange={e => handleChangeData(e)}
+                        />
+                        <p className={css.errMsg} name="text" />
+                    </label>
+                </div>
+                <label htmlFor="avatar" className={css.iconBtnPlusCreate}>
+                    <input onChange={test} style={{display:"none"}} type="file" id="avatar" name="avatar" accept="image/*"/>
+                    <span className={css.imgBtn}>Завантажити фотографію <MdAddPhotoAlternate size="20px"/></span>
+                    {photo && <div className={css.photoPreview}><HiPhoto /> 1</div>}
                 </label>
-                <label>
-                    <input
-                        className={css.formInputTitle}
-                        type="date"
-                        name="date"
-                        placeholder="дата"
-                        onChange={e => handleChangeData(e)}
-                        required
-                    />
-                    <p className={css.errMsg} name="text" />
-                </label>
-                <label>
-                    <input
-                        className={css.formInputTitle}
-                        type="text"
-                        name="price"
-                        placeholder="Винагорода"
-                        onChange={e => handleChangeData(e)}
-                    />
-                    <p className={css.errMsg} name="text" />
-                </label>
-                <label>
-                    <input
-                        className={css.formInputTitle}
-                        type="text"
-                        name="contact"
-                        placeholder="Номер"
-                        onChange={e => handleChangeData(e)}
-                    />
-                    <p className={css.errMsg} name="text" />
-                </label>
-                <label htmlFor="avatar" className={css.iconBtnPlus}>
-                    <input onChange={test} type="file" id="avatar" name="avatar" accept="image/*"/>
-                </label>
-                <button type='submit'>submit</button>
+                <button className={css.btnSend} type='submit'>Створити</button>
             </form>
         </div>
     )

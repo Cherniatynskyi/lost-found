@@ -16,11 +16,15 @@ import cities from './ua.json'
 export const cityOptions = cities.map(city => {
     return {
         value: city.city,
-        label: city.city
+        label: city.city,
+        type: "city"
     }
  })
 
+cityOptions.unshift({value: "all", label: "All", type: "city"})
+
 export const categoryOptions = [
+    {value: "all", label: "All"},
     { value: 'keys', label: <div style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>Keys <LiaKeySolid/></div> },
     { value: 'phone', label: <div style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>Phone <IoPhonePortraitOutline/></div> },
     { value: 'document', label: <div style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>Document <RiPassportLine/></div> },

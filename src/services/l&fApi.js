@@ -1,31 +1,33 @@
 import axios from 'axios'
-import { setToken } from './authService'
-import { instance } from './authService'
+import { setToken, instance } from './authService'
 
-export const getLost = async () => {
-    const response = await axios({ url: `http://localhost:3003/api/cards/lost`, method: "GET" })
+export const getLost = async (page, location, category) => {
+    const response = await axios({ url: `http://localhost:3003/api/cards/lost?page=${page}&location=${location}&category=${category}`, method: "GET" })
     return response.data
 }
 
-export const getFound = async () => {
-    const response = await axios({ url: `http://localhost:3003/api/cards/found`, method: "GET" })
+export const getFound = async (page, location, category) => {
+    console.log(location, category)
+    const response = await axios({ url: `http://localhost:3003/api/cards/found?page=${page}&location=${location}&category=${category}`, method: "GET" })
     return response.data
 }
 
-export const getByOwner = async (ownerId) => {
+export const getByOwner = async (ownerId, token) => {
+    setToken(`Bearer ${token}`) 
     const {data} = await instance.get(`cards/${ownerId}`)
-    setToken(`Bearer ${data.token}`)
     return data
 }
 
 export const addCard = async (body) => {
-    const data =  await instance.post('cards/', body)
+    const {data} =  await instance.post('cards/', body)
     setToken(`Bearer ${data.token}`) 
     return data
 }
 
 export const deleteCard = async (id) => {
-    return await axios.delete(`http://localhost:3003/api/cards/${id}`)
+    const {data} = await instance.delete(`cards/${id}`)
+    setToken(`Bearer ${data.token}`) 
+    return data
 }
 
 export const updateCard = async (id, data) => {

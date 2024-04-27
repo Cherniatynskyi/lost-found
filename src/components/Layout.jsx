@@ -23,7 +23,7 @@ export const Layout = () => {
         {isMenuOpen && <BurgerMenu/>}
         {isCreateModalOpen && <CreateModal/>}
         <div className={css.nav}>
-            <img className={css.logo} src={logo} alt="" />
+            <NavLink to='/'><img className={css.logo} src={logo} alt="" /></NavLink>
             <button onClick={()=>dispatch(openBurger())} className={css.menuBtn}><TbMenuDeep size='35px'/></button>
         </div>
 
