@@ -6,10 +6,17 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdDateRange } from "react-icons/md";
 import { FaPhone } from "react-icons/fa";
 import { FaMoneyBill } from "react-icons/fa";
+import { MdEdit } from "react-icons/md";
+import { openEditModal } from '../../redux/menuSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { EditModal } from 'components/ProfileModal/EditModal';
 
 export const DetailsModal = ({card, onClose}) => {
     window.scrollTo(0, 0)
     useLockBodyScroll()
+    const dispatch = useDispatch()
+
+    const isEditOpen = useSelector(state => state.menu.editModalIsOpen)
     let date = new Date(card.date);
   return (
     <div className={css.menu}>
@@ -36,6 +43,9 @@ export const DetailsModal = ({card, onClose}) => {
             </ul>
         </div>
         <a className={css.callBtn} href={`tel:${card.contact}`}>Зателефонувати <FaPhone /></a>
+        <button className={css.btnEdit} onClick={()=>dispatch(openEditModal())}>Редагувати <MdEdit /></button>
+        
+        {isEditOpen && <EditModal card={card}/>}
     </div>
   )
 }

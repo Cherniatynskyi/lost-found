@@ -156,13 +156,13 @@
 .callBtn{
     background-color: green;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 14px;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    font-size: 24px;
+    font-size: 20px;
 
     margin-top: 20px;
 }
@@ -170,7 +170,7 @@
 
 .actionBtnWrap{
     position: absolute;
-    top: 20px;
+    bottom: 10px;
     right: 10px;
 
     display: flex;
@@ -185,3 +185,75 @@
     color: rgb(88, 88, 88);
 }
 
+
+/* CONFIRM DELETE MODAL */
+
+
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+    z-index: 1200;
+}
+
+.modalBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 70%;
+    flex-direction: column;
+
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.closeButton{
+    margin-left: auto;
+    width: 30px;
+    background-color: inherit;
+    font-size: 30px;
+}
+
+.cnfModalTitle{
+    font-size: 20px;
+    text-align: center;
+}
+
+.cnfBtnWrap{
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    display: flex;
+    gap: 15px;
+}
+
+.cnfBtn{
+    background-color: var(--accentColor);
+    padding: 15px;
+    color: white;
+    border-radius: 14px;
+    font-size: 20px;
+}
+
+.btnEdit{
+    width: 100%;
+    background-color: var(--accentColor);
+    color: white;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 14px;
+    margin-top: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }

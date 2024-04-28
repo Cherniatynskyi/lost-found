@@ -2,18 +2,16 @@ import axios from 'axios'
 import { setToken, instance } from './authService'
 
 export const getLost = async (page, location, category) => {
-    const response = await axios({ url: `http://localhost:3003/api/cards/lost?page=${page}&location=${location}&category=${category}`, method: "GET" })
+    const response = await axios({ url: `https://lost-found-server.onrender.com/api/cards/lost?page=${page}&location=${location}&category=${category}`, method: "GET" })
     return response.data
 }
 
 export const getFound = async (page, location, category) => {
-    console.log(location, category)
-    const response = await axios({ url: `http://localhost:3003/api/cards/found?page=${page}&location=${location}&category=${category}`, method: "GET" })
+    const response = await axios({ url: `https://lost-found-server.onrender.com/api/cards/found?page=${page}&location=${location}&category=${category}`, method: "GET" })
     return response.data
 }
 
-export const getByOwner = async (ownerId, token) => {
-    setToken(`Bearer ${token}`) 
+export const getByOwner = async (ownerId) => {
     const {data} = await instance.get(`cards/${ownerId}`)
     return data
 }
@@ -30,6 +28,8 @@ export const deleteCard = async (id) => {
     return data
 }
 
-export const updateCard = async (id, data) => {
-    return await axios.put(`http://localhost:3003/api/cards/${id}`, data)
+export const updateCard = async (id, body) => {
+    const {data} =  await instance.put(`cards/${id}`, body)
+    setToken(`Bearer ${data.token}`) 
+    return data
 }

@@ -4,6 +4,7 @@ export const MenuSlice = createSlice({
     name: 'menu',
     initialState: {
         createModalIsOpen: false,
+        editModalIsOpen: false,
         burgerIsOpen: false,
         profileIsOpen: false,
     },
@@ -13,6 +14,13 @@ export const MenuSlice = createSlice({
         },
         closeCreateModal: (state, action) =>{
             state.createModalIsOpen = false
+
+        },
+        openEditModal: (state, {payload}) =>{
+            state.editModalIsOpen = true
+        },
+        closeEditModal: (state, action) =>{
+            state.editModalIsOpen = false
 
         },
         openBurger: (state, {payload}) =>{
@@ -36,4 +44,4 @@ export const MenuSlice = createSlice({
 
 
 
-export const {openCreateModal, closeCreateModal, openBurger, closeBurger, openProfile, closeProfile, openDetails, closeDetails} = MenuSlice.actions
+export const {openCreateModal, closeCreateModal, openBurger, closeBurger, openProfile, closeProfile, openDetails, closeDetails, openEditModal, closeEditModal} = MenuSlice.actions

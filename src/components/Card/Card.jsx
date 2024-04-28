@@ -3,16 +3,21 @@ import { FaLocationDot } from "react-icons/fa6";
 import { DetailsModal } from './DetailsModal';
 import { useState } from 'react';
 import { MdDelete } from "react-icons/md";
-import { MdModeEdit } from "react-icons/md";
-import { useDispatch } from 'react-redux';
-import { deleteCardThunk } from '../../redux/Cards/operations';
+import { useLocation } from 'react-router-dom';
+import { ConfirmDeleteModal } from './ConfirmDeleteModal';
 
 export const Card = ({card}) => {
     let date = new Date(card.date);
     const [isOpen, setIsOpen] = useState(false)
-    const dispatch = useDispatch()
+    const [confDltIsOpen, setCnfDltIsOpen] = useState(false)
 
-    const handleOpenModal = () =>{
+    const location = useLocation()
+
+    const handleOpenModal = (e) =>{
+      if((e.target.nodeName === 'path') || (e.target.nodeName === 'svg')){
+        handleOpenCnf()
+        return
+      }
       setIsOpen(true)
     }
 
@@ -20,11 +25,14 @@ export const Card = ({card}) => {
       setIsOpen(false)
     }
 
-    const handleDelete = (e) =>{
-      if(e.target === e.currentTarget){
-        dispatch(deleteCardThunk(card._id))
-      }
+    const handleOpenCnf = () =>{
+      setCnfDltIsOpen(true)
     }
+
+    const handleCloseCnf = () =>{
+      setCnfDltIsOpen(false)
+    }
+
   return (
     <>
     <div onClick={(e)=>handleOpenModal(e)} className={css.cardWrap}>
@@ -42,12 +50,12 @@ export const Card = ({card}) => {
                 <p className={css.location}><FaLocationDot /> {card.location}</p>
             </div>
         </div>
-        <div className={css.actionBtnWrap}>
-            <button onClick={(e)=>handleDelete(e)} className={css.actionBtn}><MdDelete /></button>
-            <button className={css.actionBtn}><MdModeEdit /></button>
-        </div>
+        {location.pathname === '/myposts' && <div className={css.actionBtnWrap}>
+            <button className={css.actionBtn}><MdDelete id='deleteBtn'/></button>
+        </div>}
     </div>
     {isOpen && <DetailsModal card={card} onClose={handleCloseModal}/>}
+    {confDltIsOpen && <ConfirmDeleteModal id={card._id} onClose={handleCloseCnf}/>}
     </>
   )
 }

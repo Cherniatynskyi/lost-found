@@ -25,7 +25,6 @@ const handleFulfilledGetByOwner = (state,{payload}) => {
 
 const handleFulfilledAdd = (state, action) => {
     state.isLoading = false
-    state.cards.push(action.payload)
     state.error = ''
 }
 
@@ -37,9 +36,6 @@ const handleFulfilledDel = (state,{payload}) => {
 
 const handleFulfilledUpd = (state,{payload}) => {
     state.isLoading = false
-    state.cards = state.cards.map(card =>
-        card.id === payload.id ? { ...card, ...payload } : card
-      );
 }
 
 

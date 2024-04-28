@@ -11,10 +11,8 @@ export const  MyPostsList = () => {
     let user = useSelector(state=> state.auth.user)
 
     useEffect(() => {
-      if(user){
         dispatch(getByOwnerThunk(user._id))
-      }
-    }, [dispatch, user, ownerCards ])
+    }, [dispatch, user])
 
     
 
@@ -30,7 +28,7 @@ export const  MyPostsList = () => {
             )
         })}
       </ul>
-      <button className={css.paginateButton}>Далі</button>
+      {/* <button className={css.paginateButton}>Далі</button> */}
     </div>}
     </>
   )
