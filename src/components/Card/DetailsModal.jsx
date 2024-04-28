@@ -10,16 +10,22 @@ import { MdEdit } from "react-icons/md";
 import { openEditModal } from '../../redux/menuSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { EditModal } from 'components/ProfileModal/EditModal';
+import { motion } from "framer-motion"
+import { useLocation } from 'react-router-dom';
 
 export const DetailsModal = ({card, onClose}) => {
     window.scrollTo(0, 0)
     useLockBodyScroll()
+    const {pathname} = useLocation()
     const dispatch = useDispatch()
 
     const isEditOpen = useSelector(state => state.menu.editModalIsOpen)
     let date = new Date(card.date);
   return (
-    <div className={css.menu}>
+    <motion.div 
+        className={css.menu}
+        animate={{ left: 0 }}
+        initial={{left: '100%'}}>
         <button onClick={onClose} className={css.menuCloseBtn}><IoMdClose /></button>
         <div className={css.modalInfoWrap}>
             <div className={css.modalImgWrap}>
@@ -43,9 +49,9 @@ export const DetailsModal = ({card, onClose}) => {
             </ul>
         </div>
         <a className={css.callBtn} href={`tel:${card.contact}`}>Зателефонувати <FaPhone /></a>
-        <button className={css.btnEdit} onClick={()=>dispatch(openEditModal())}>Редагувати <MdEdit /></button>
+        {pathname === '/myposts' && <button className={css.btnEdit} onClick={()=>dispatch(openEditModal())}>Редагувати <MdEdit /></button>}
         
         {isEditOpen && <EditModal card={card}/>}
-    </div>
+    </motion.div>
   )
 }

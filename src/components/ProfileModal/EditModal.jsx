@@ -10,6 +10,7 @@ import { MdAddPhotoAlternate } from "react-icons/md";
 import { HiPhoto } from "react-icons/hi2";
 import { useLockBodyScroll } from '@uidotdev/usehooks';
 import { useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion"
 
 export const EditModal = ({card}) => {
     window.scrollTo(0, 0)
@@ -66,7 +67,10 @@ export const EditModal = ({card}) => {
     }
     const dispatch = useDispatch()
     return (
-        <div className={css.editModal}>
+        <motion.div
+            animate={{ left: 0 }}
+            initial={{left: '100%'}}
+             className={css.editModal}>
             <button onClick={()=>dispatch(closeEditModal())} className={css.menuCloseBtn}><IoMdClose /></button>
             <form className={css.form} onSubmit={handleSubmit}>
                 <h2>Редагувати публікацію</h2>
@@ -164,6 +168,6 @@ export const EditModal = ({card}) => {
                 </label>
                 <button className={css.btnSend} type='submit'>Змінити</button>
             </form>
-        </div>
+        </motion.div>
     )
 }

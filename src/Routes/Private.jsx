@@ -3,5 +3,5 @@ import { Navigate } from "react-router-dom"
 
 export const Private = ({element: Element}) =>{
   const isAuth = useSelector(state => state.auth.user)
-    return !isAuth ? <Navigate to='/auth/login'/> : <Element/>
+    return !isAuth.name ? <Navigate to='/auth/login'/> : <Element/>
 }

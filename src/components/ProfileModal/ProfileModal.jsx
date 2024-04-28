@@ -12,6 +12,7 @@ import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { FaSquarePlus } from "react-icons/fa6";
+import { motion } from "framer-motion"
 
 const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -80,7 +81,10 @@ export const ProfileModal = ({onClose}) => {
 
 
     return (
-    <div className={css.profileModal}>
+    <motion.div 
+         animate={{ left: 0 }}
+        initial={{left: '100%'}}
+        className={css.profileModal}>
         <button onClick={()=>dispatch(closeProfile())} className={css.menuCloseBtn}><IoMdClose /></button>
         <>
         <Formik
@@ -178,7 +182,7 @@ export const ProfileModal = ({onClose}) => {
           </Form>
         </Formik>
     </>
-    </div>
+    </motion.div>
     
   )
 }

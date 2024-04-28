@@ -37,7 +37,7 @@
 }
 
 .title{
-    font-size: 20px;
+    font-size: 16px;
     color: var(--accentColor);
 }
 
@@ -45,6 +45,9 @@
     font-size: 12px;
     color: rgb(111, 111, 111);
     margin-top: 5px;
+    width: 150px;
+    height: 15px;
+    overflow: hidden;
 }
 
 

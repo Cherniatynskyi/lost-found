@@ -29,7 +29,7 @@ export const handlePending = state => {
   export const handleFulfilledLogout = (state, _) => {
     state.isRefreshing = false;
     state.error = '';
-    state.user = null;
+    state.user = {name: null, email: null};
     state.token = null;
     state.tokenExpiration = null;
     state.isLoggedIn = false;

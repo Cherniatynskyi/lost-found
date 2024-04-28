@@ -16,6 +16,7 @@ function App() {
   const MyPostsPage = lazy(() => import('../pages/MyPostsPage/MyPostsPage'));
 
   const dispatch = useDispatch();
+  // const user = useSelector(state=> state.auth.user)
 
   useEffect(() => {
     dispatch(fetchCurrentUser());

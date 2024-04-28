@@ -9,10 +9,11 @@ export const  MyPostsList = () => {
     const dispatch = useDispatch()
     const ownerCards = useSelector(state => state.cards.ownerCards)
     let user = useSelector(state=> state.auth.user)
+    const {_id} = user
 
     useEffect(() => {
-        dispatch(getByOwnerThunk(user._id))
-    }, [dispatch, user])
+        dispatch(getByOwnerThunk(_id))
+    }, [dispatch, _id])
 
     
 

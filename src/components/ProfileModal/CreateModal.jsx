@@ -10,6 +10,7 @@ import { MdAddPhotoAlternate } from "react-icons/md";
 import { HiPhoto } from "react-icons/hi2";
 import { useLockBodyScroll } from '@uidotdev/usehooks';
 import { useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion"
 
 export const CreateModal = () => {
     window.scrollTo(0, 0)
@@ -65,7 +66,10 @@ export const CreateModal = () => {
     }
     const dispatch = useDispatch()
     return (
-        <div className={css.profileModal}>
+        <motion.div
+            animate={{ left: 0 }}
+            initial={{left: '100%'}}
+            className={css.profileModal}>
             <button onClick={()=>dispatch(closeCreateModal())} className={css.menuCloseBtn}><IoMdClose /></button>
             <form className={css.form} onSubmit={handleSubmit}>
                 <h2>Створити публікацію</h2>
@@ -159,6 +163,6 @@ export const CreateModal = () => {
                 </label>
                 <button className={css.btnSend} type='submit'>Створити</button>
             </form>
-        </div>
+        </motion.div>
     )
 }
